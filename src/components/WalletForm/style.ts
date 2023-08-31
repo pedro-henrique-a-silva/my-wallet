@@ -39,6 +39,8 @@ export const FormWalletForm = styled.form`
     border: 2px solid ${(props) => props.theme.colors.gray500};
     border-radius: 6px;
     padding: 0.4rem 1rem;
+    margin-left: 0.5rem;
+    min-width: 148px;
   }
 
   & button:not(:disabled):hover {

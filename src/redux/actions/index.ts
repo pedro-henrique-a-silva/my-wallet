@@ -7,6 +7,8 @@ export const UPDATE_CURRENCIES = 'UPDATE_CURRENCIES';
 export const UPDATE_EXPENSES = 'UPDATE_EXPENSES';
 export const CHANGE_REQUEST = 'CHANGE_REQUEST';
 export const REMOVE_EXPENSE = 'REMOVE_EXPENSE';
+export const CHANGE_TO_EDIT_MODE = 'CHANGE_TO_EDIT_MODE';
+export const EDIT_EXPENSE = 'EDIT_EXPENSE';
 
 export const loginAction = (email: string) => ({
   type: USER_LOGIN,
@@ -31,6 +33,18 @@ export const changeRequestAction = (payload: boolean) => ({
 export const removeExpenseAction = (expenseId: number) => ({
   type: REMOVE_EXPENSE,
   payload: expenseId,
+});
+
+export const editExpenseAction = (expense: Expenses) => ({
+  type: EDIT_EXPENSE,
+  payload: expense,
+});
+
+export const changeToEditingModeAction = (
+  editingMode: { isEditMode: boolean, expenseId: number },
+) => ({
+  type: CHANGE_TO_EDIT_MODE,
+  payload: editingMode,
 });
 
 // action thunk

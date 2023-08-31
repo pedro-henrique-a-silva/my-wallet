@@ -2,11 +2,16 @@ import { useSelector, useDispatch } from 'react-redux';
 import { NotePencil, X } from '@phosphor-icons/react';
 import { TableWrapper, TableHead, TableRow, Button } from './styles';
 import { ReduxState, Dispatch } from '../../types';
-import { removeExpenseAction } from '../../redux/actions';
+import { removeExpenseAction, changeToEditingModeAction } from '../../redux/actions';
 
 function Table() {
   const dispatch: Dispatch = useDispatch();
   const { expenses } = useSelector((state: ReduxState) => state.wallet);
+
+  const handleClick = (isEditMode: boolean, expenseId: number) => {
+    dispatch(changeToEditingModeAction({ isEditMode, expenseId }));
+  };
+
   return (
     <TableWrapper>
       <thead>
@@ -41,7 +46,8 @@ function Table() {
               <td>
                 <Button
                   isEdit
-                  onClick={ () => console.log('cliquei no botão de editar') }
+                  data-testid="edit-btn"
+                  onClick={ () => handleClick(true, expense.id) }
                 >
                   <NotePencil size={ 16 } weight="fill" />
 

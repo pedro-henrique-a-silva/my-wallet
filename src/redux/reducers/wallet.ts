@@ -4,7 +4,9 @@ import {
   UPDATE_CURRENCIES,
   UPDATE_EXPENSES,
   CHANGE_REQUEST,
-  REMOVE_EXPENSE } from '../actions';
+  REMOVE_EXPENSE,
+  CHANGE_TO_EDIT_MODE,
+  EDIT_EXPENSE } from '../actions';
 
 const INITIAL_STATE = {
   currencies: [], // array de string
@@ -12,6 +14,7 @@ const INITIAL_STATE = {
   editor: false, // valor booleano que indica se uma despesa está sendo editada
   idToEdit: 0, // valor numérico que armazena o id da despesa que está sendo editada
   isFatching: true,
+  isEditingMode: false,
 };
 
 const walletReducer = (state: Wallet = INITIAL_STATE, actions: AnyAction) => {
@@ -35,6 +38,24 @@ const walletReducer = (state: Wallet = INITIAL_STATE, actions: AnyAction) => {
       return {
         ...state,
         expenses: state.expenses.filter((expense) => expense.id !== actions.payload),
+      };
+    case CHANGE_TO_EDIT_MODE:
+      return {
+        ...state,
+        isEditingMode: actions.payload.isEditMode,
+        idToEdit: actions.payload.expenseId,
+      };
+    case EDIT_EXPENSE:
+      return {
+        ...state,
+        isEditingMode: false,
+        idToEdit: 0,
+        expenses: state.expenses.map((expense) => {
+          if (expense.id === actions.payload.id) {
+            return { ...expense, ...actions.payload };
+          }
+          return { ...expense };
+        }),
       };
     default:
       return state;

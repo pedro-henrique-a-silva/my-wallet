@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FormWalletForm } from './style';
-import { addNewExpenseAction } from '../../redux/actions';
+import { addNewExpenseAction, editExpenseAction } from '../../redux/actions';
 import { Dispatch, ReduxState } from '../../types';
 
 const INITIAL_FORM_VALUES = {
@@ -13,7 +13,12 @@ const INITIAL_FORM_VALUES = {
 };
 
 function WalletForm() {
-  const { expenses, currencies } = useSelector((state: ReduxState) => state.wallet);
+  const {
+    expenses,
+    currencies,
+    isEditingMode,
+    idToEdit } = useSelector((state: ReduxState) => state.wallet);
+
   const dispatch: Dispatch = useDispatch();
   const [formValues, setFormValues] = useState(INITIAL_FORM_VALUES);
 
@@ -33,8 +38,12 @@ function WalletForm() {
     const hasEmptyField = Object.entries(formValues)
       .some((field) => field[1].length <= 0);
 
-    if (!hasEmptyField) {
+    if (!hasEmptyField && !isEditingMode) {
       dispatch(addNewExpenseAction({ ...formValues, id: expenses.length }));
+    }
+
+    if (!hasEmptyField && isEditingMode) {
+      dispatch(editExpenseAction({ ...formValues, id: idToEdit }));
     }
 
     setFormValues(INITIAL_FORM_VALUES);
@@ -88,7 +97,7 @@ function WalletForm() {
         Tag:
         <select
           onChange={ handleInputChange }
-          value={ formValues.method }
+          value={ formValues.tag }
           data-testid="tag-input"
           name="tag"
           id="tag"
@@ -112,7 +121,7 @@ function WalletForm() {
         />
       </label>
 
-      <button>Adicionar Despesa</button>
+      <button>{(isEditingMode ? 'Editar despesa' : 'Adicionar Despesa')}</button>
     </FormWalletForm>
   );
 }

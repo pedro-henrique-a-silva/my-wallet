@@ -90,5 +90,65 @@ describe('Testa Pagina de Login', () => {
 
     expect(currenciesGLobalState).toHaveLength(currenciesState.length);
   });
-  test.todo('Testa se Login e efeituado');
+
+  test(`Testa se Formulario de adiconar despesas, 
+  e se botão de exluir remove do estado global`, async () => {
+    const { user, store } = renderWithRouterAndRedux(<App />, '/carteira');
+
+    const firstExpense = {
+      id: 0,
+      value: '11',
+      currency: 'USD',
+      method: 'Cartão de crédito',
+      tag: 'Lazer',
+      description: 'Onze dólares',
+      exchangeRates: mockData,
+    };
+    await waitForElementToBeRemoved(screen.getByText('Carregando...'));
+
+    const valueInput = await screen.findByTestId(/value-input/i);
+    const currencyInput = await screen.findByTestId(/currency-input/i);
+    const methodInput = await screen.findByTestId(/method-input/i);
+    const tagInput = await screen.findByTestId(/tag-input/i);
+    const descriptionInput = await screen.findByTestId(/description-input/i);
+
+    const button = screen.getByRole('button', { name: /Adicionar Despesa/i });
+    await user.type(valueInput, firstExpense.value);
+    await user.selectOptions(currencyInput, firstExpense.currency);
+    await user.selectOptions(methodInput, firstExpense.method);
+    await user.selectOptions(tagInput, firstExpense.tag);
+    await user.type(descriptionInput, firstExpense.description);
+    await user.click(button);
+
+    const secondExpense = {
+      id: 1,
+      value: '20',
+      currency: 'EUR',
+      method: 'Cartão de débito',
+      tag: 'Trabalho',
+      description: 'Vinte euros',
+      exchangeRates: mockData,
+    };
+    await user.type(valueInput, secondExpense.value);
+    await user.selectOptions(currencyInput, secondExpense.currency);
+    await user.selectOptions(methodInput, secondExpense.method);
+    await user.selectOptions(tagInput, secondExpense.tag);
+    await user.type(descriptionInput, secondExpense.description);
+
+    await user.click(button);
+
+    const expensesGLobalState = store.getState().wallet.expenses;
+    expect(expensesGLobalState).toEqual([firstExpense, secondExpense]);
+
+    const buttonDeleteExpense = await screen.findAllByTestId(/delete-btn/i);
+    await user.click(buttonDeleteExpense[0]);
+
+    const expensesRemovedExpense = store.getState().wallet.expenses;
+    expect(expensesRemovedExpense).toHaveLength(1);
+
+    const buttonEditExpense = await screen.findAllByTestId(/edit-btn/i);
+    await user.click(buttonEditExpense[0]);
+
+    expect(screen.getByRole('button', { name: /Editar despesa/i })).toBeInTheDocument();
+  });
 });

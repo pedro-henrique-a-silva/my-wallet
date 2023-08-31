@@ -1,9 +1,15 @@
-import { useSelector } from 'react-redux';
-import { ReduxState } from '../../types';
+import Header from '../../components/Header/Header';
+import WalletForm from '../../components/WalletForm/WalletForm';
+import Table from '../../components/Table/Table';
 
 function Wallet() {
-  const { email } = useSelector((state: ReduxState) => state.user);
-  return <div>{email}</div>;
+  return (
+    <>
+      <Header />
+      <WalletForm />
+      <Table />
+    </>
+  );
 }
 
 export default Wallet;

@@ -1,4 +1,8 @@
 import { AnyAction } from 'redux';
+import { Wallet } from '../../types';
+import {
+  UPDATE_CURRENCIES,
+  UPDATE_EXPENSES } from '../actions';
 
 const INITIAL_STATE = {
   currencies: [], // array de string
@@ -7,6 +11,21 @@ const INITIAL_STATE = {
   idToEdit: 0, // valor numérico que armazena o id da despesa que está sendo editada
 };
 
-const walletReducer = (state = INITIAL_STATE, actions: AnyAction) => state;
+const walletReducer = (state: Wallet = INITIAL_STATE, actions: AnyAction) => {
+  switch (actions.type) {
+    case UPDATE_CURRENCIES:
+      return {
+        ...state,
+        currencies: actions.payload,
+      };
+    case UPDATE_EXPENSES:
+      return {
+        ...state,
+        expenses: [...state.expenses, actions.payload],
+      };
+    default:
+      return state;
+  }
+};
 
 export default walletReducer;

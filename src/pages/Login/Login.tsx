@@ -2,7 +2,9 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { loginAction } from '../../redux/actions';
-import style from './style.module.css';
+import {
+  Wrapper,
+  FormWrapper } from './style';
 
 const INITIAL_FORM_VALUES = {
   email: '',
@@ -38,8 +40,8 @@ function Login() {
   console.log((formValues.pass.length >= 6 && isEmailValid));
 
   return (
-    <main className={ style.wrapper }>
-      <form className={ style.formWrapper } onSubmit={ handleSubmit }>
+    <Wrapper>
+      <FormWrapper onSubmit={ handleSubmit }>
         <h2>Log in</h2>
         <input
           id="email"
@@ -65,8 +67,8 @@ function Login() {
           Entrar
 
         </button>
-      </form>
-    </main>
+      </FormWrapper>
+    </Wrapper>
   );
 }
 

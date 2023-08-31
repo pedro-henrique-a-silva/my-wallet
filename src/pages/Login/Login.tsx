@@ -50,6 +50,7 @@ function Login() {
           data-testid="email-input"
           type="text"
           maxLength={ 50 }
+          placeholder="Digite seu E-mail"
 
         />
         <input
@@ -59,6 +60,7 @@ function Login() {
           data-testid="password-input"
           type="password"
           maxLength={ 50 }
+          placeholder="Digite sua Senha"
         />
         <button
           disabled={ !(formValues.pass.length >= 6 && isEmailValid) }

@@ -32,7 +32,8 @@ export type Wallet = {
   currencies: string[],
   expenses: ExpensesWithRate[],
   editor: boolean,
-  idToEdit: number
+  idToEdit: number,
+  isFatching: boolean
 };
 
 export type ReduxState = {

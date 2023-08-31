@@ -10,6 +10,8 @@ export const FormWalletForm = styled.form`
   min-width: 770px;
   padding:  1rem;
   box-shadow: 0px 0 6px 1px ${(props) => props.theme.colors.blue600};
+  position: relative;
+  z-index: 10;
 
   & input , select {
     border: none;

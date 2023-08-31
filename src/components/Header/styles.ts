@@ -8,3 +8,11 @@ export const HeaderContainer = styled.header`
   padding: 1rem;
   margin-bottom: 2rem;
 `;
+
+export const UserLogged = styled.span`
+  margin: 0.5rem;
+`;
+
+export const TotalField = styled.strong`
+  margin: 0.5rem;
+`;

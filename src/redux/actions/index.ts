@@ -6,6 +6,7 @@ export const USER_LOGIN = 'USER_LOGIN';
 export const UPDATE_CURRENCIES = 'UPDATE_CURRENCIES';
 export const UPDATE_EXPENSES = 'UPDATE_EXPENSES';
 export const CHANGE_REQUEST = 'CHANGE_REQUEST';
+export const REMOVE_EXPENSE = 'REMOVE_EXPENSE';
 
 export const loginAction = (email: string) => ({
   type: USER_LOGIN,
@@ -25,6 +26,11 @@ export const updateExpensesAction = (expense: ExpensesWithRate) => ({
 export const changeRequestAction = (payload: boolean) => ({
   type: CHANGE_REQUEST,
   payload,
+});
+
+export const removeExpenseAction = (expenseId: number) => ({
+  type: REMOVE_EXPENSE,
+  payload: expenseId,
 });
 
 // action thunk

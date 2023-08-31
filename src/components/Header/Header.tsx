@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { ReduxState } from '../../types';
-import { HeaderContainer } from './styles';
+import { HeaderContainer, UserLogged, TotalField } from './styles';
 
 function Header() {
   const { email } = useSelector((state: ReduxState) => state.user);
@@ -9,17 +9,17 @@ function Header() {
     <HeaderContainer>
       <h2>Wallet</h2>
       <div>
-        <span data-testid="email-field">{email}</span>
+        <UserLogged data-testid="email-field">{email}</UserLogged>
         <span>
-          Total gastos
-          <strong data-testid="total-field">
+          Total gastos:
+          <TotalField data-testid="total-field">
             {(expenses.length > 0)
               ? expenses.reduce((total, expense) => {
                 const askCurrencie = Number(expense.exchangeRates[expense.currency].ask);
                 return total + (Number(expense.value) * askCurrencie);
               }, 0).toFixed(2)
-              : 0}
-          </strong>
+              : '0.00'}
+          </TotalField>
           <span data-testid="header-currency-field">BRL</span>
         </span>
       </div>

@@ -3,7 +3,8 @@ import { Wallet } from '../../types';
 import {
   UPDATE_CURRENCIES,
   UPDATE_EXPENSES,
-  CHANGE_REQUEST } from '../actions';
+  CHANGE_REQUEST,
+  REMOVE_EXPENSE } from '../actions';
 
 const INITIAL_STATE = {
   currencies: [], // array de string
@@ -29,6 +30,11 @@ const walletReducer = (state: Wallet = INITIAL_STATE, actions: AnyAction) => {
       return {
         ...state,
         isFatching: actions.payload,
+      };
+    case REMOVE_EXPENSE:
+      return {
+        ...state,
+        expenses: state.expenses.filter((expense) => expense.id !== actions.payload),
       };
     default:
       return state;

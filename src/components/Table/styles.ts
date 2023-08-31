@@ -9,7 +9,7 @@ export const TableWrapper = styled.table`
   /* width: 65.3rem; */
   min-width: 770px;
   padding-top: 1.5rem;
-  z-index: -1;
+  z-index: 2;
 
   & th {
     padding: 0.9rem;
@@ -44,8 +44,23 @@ export const TableRow = styled.tr`
   justify-content: space-evenly;
   
 
-  & :nth-child(even) {
+  & td:nth-child(even) {
     border-left: 2px solid white;
     border-right: 2px solid white;
   }
+`;
+type ButtonProp = {
+  isEdit: boolean
+};
+
+export const Button = styled.button<ButtonProp>`
+  background-color: ${(props) => ((props.isEdit) ? 'green' : 'red')};
+  border: none;
+  border-radius: 6px;
+  margin: 0.3rem;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0.2rem 0.4rem;
+  text-align: center;
 `;

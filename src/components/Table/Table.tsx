@@ -1,8 +1,11 @@
-import { useSelector } from 'react-redux';
-import { TableWrapper, TableHead, TableRow } from './styles';
-import { ReduxState } from '../../types';
+import { useSelector, useDispatch } from 'react-redux';
+import { NotePencil, X } from '@phosphor-icons/react';
+import { TableWrapper, TableHead, TableRow, Button } from './styles';
+import { ReduxState, Dispatch } from '../../types';
+import { removeExpenseAction } from '../../redux/actions';
 
 function Table() {
+  const dispatch: Dispatch = useDispatch();
   const { expenses } = useSelector((state: ReduxState) => state.wallet);
   return (
     <TableWrapper>
@@ -35,7 +38,23 @@ function Table() {
                 {(Number(expense.value) * Number(ask)).toFixed(2)}
               </td>
               <td>Real</td>
-              <td>Editar ou Excluir</td>
+              <td>
+                <Button
+                  isEdit
+                  onClick={ () => console.log('cliquei no botão de editar') }
+                >
+                  <NotePencil size={ 16 } weight="fill" />
+
+                </Button>
+                <Button
+                  isEdit={ false }
+                  onClick={ () => dispatch(removeExpenseAction(expense.id)) }
+                  data-testid="delete-btn"
+                >
+                  <X size={ 16 } weight="fill" />
+
+                </Button>
+              </td>
             </TableRow>
           );
         })}

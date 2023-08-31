@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FormWalletForm } from './style';
-import { addNewExpenseAction, getCurrenciesAction } from '../../redux/actions';
+import { addNewExpenseAction } from '../../redux/actions';
 import { Dispatch, ReduxState } from '../../types';
 
 const INITIAL_FORM_VALUES = {
@@ -39,10 +39,6 @@ function WalletForm() {
 
     setFormValues(INITIAL_FORM_VALUES);
   };
-
-  // useEffect(() => {
-  //   dispatch(getCurrenciesAction());
-  // }, []);
 
   return (
     <FormWalletForm onSubmit={ handleSubmit }>

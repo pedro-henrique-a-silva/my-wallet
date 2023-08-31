@@ -30,7 +30,6 @@ export const changeRequestAction = (payload: boolean) => ({
 // action thunk
 export const getCurrenciesAction = () => {
   return async (dispatch: Dispatch) => {
-    dispatch(changeRequestAction(true));
     try {
       const currencies = await fetchCurrencies();
       const filteredCurrencies = Object.keys(currencies)

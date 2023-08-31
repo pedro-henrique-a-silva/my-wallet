@@ -5,6 +5,7 @@ import WalletForm from '../../components/WalletForm/WalletForm';
 import Table from '../../components/Table/Table';
 import { Dispatch, ReduxState } from '../../types';
 import { getCurrenciesAction } from '../../redux/actions';
+import { WalletWrapper } from './style';
 
 function Wallet() {
   const dispatch: Dispatch = useDispatch();
@@ -21,10 +22,10 @@ function Wallet() {
       <Header />
       {(!isFetching)
         ? (
-          <>
+          <WalletWrapper>
             <WalletForm />
             <Table />
-          </>
+          </WalletWrapper>
         )
         : <p>Carregando...</p>}
     </>

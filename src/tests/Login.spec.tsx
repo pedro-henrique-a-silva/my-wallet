@@ -1,4 +1,4 @@
-import { act, screen, waitForElementToBeRemoved } from '@testing-library/react';
+import { screen, waitForElementToBeRemoved } from '@testing-library/react';
 import { vi } from 'vitest';
 import App from '../App';
 import * as getCurrencies from '../services/currenciesApi';

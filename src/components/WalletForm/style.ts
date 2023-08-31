@@ -7,6 +7,7 @@ export const FormWalletForm = styled.form`
   display: flex;
   justify-content: space-evenly;
   margin: 1rem;
+  min-width: 770px;
   padding:  1rem;
   box-shadow: 0px 0 6px 1px ${(props) => props.theme.colors.blue600};
 

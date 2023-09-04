@@ -7,7 +7,7 @@ function Header() {
   const { expenses } = useSelector((state: ReduxState) => state.wallet);
   return (
     <HeaderContainer>
-      <h2>Wallet</h2>
+      <h2>My Wallet</h2>
       <div>
         <UserLogged data-testid="email-field">{email}</UserLogged>
         <span>

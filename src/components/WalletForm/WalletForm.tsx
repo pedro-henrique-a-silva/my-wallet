@@ -59,6 +59,7 @@ function WalletForm() {
           data-testid="value-input"
           id="value"
           type="text"
+          autoComplete="off"
         />
       </label>
       <label htmlFor="">
@@ -118,6 +119,7 @@ function WalletForm() {
           data-testid="description-input"
           id="description"
           type="text"
+          autoComplete="off"
         />
       </label>
 
@@ -127,8 +129,3 @@ function WalletForm() {
 }
 
 export default WalletForm;
-
-// As options devem ser preenchidas pelo valor da chave currencies do estado global.
-// Os valores da chave currencies no estado global devem ser puxados por meio de uma requisição à API no endpoint https://economia.awesomeapi.com.br/json/all.
-// Remova, das informações trazidas pela API, a opção 'USDT'.
-// A chave currencies do estado global deve ser um array.

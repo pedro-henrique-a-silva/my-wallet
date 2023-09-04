@@ -42,7 +42,8 @@ function Login() {
   return (
     <Wrapper>
       <FormWrapper onSubmit={ handleSubmit }>
-        <h2>Log in</h2>
+        <h2>My Wallet</h2>
+        <h3>Log in</h3>
         <input
           id="email"
           onChange={ handleChange }
@@ -51,6 +52,7 @@ function Login() {
           type="text"
           maxLength={ 50 }
           placeholder="Digite seu E-mail"
+          autoComplete="off"
 
         />
         <input

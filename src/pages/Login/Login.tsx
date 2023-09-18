@@ -63,6 +63,7 @@ function Login() {
           type="password"
           maxLength={ 50 }
           placeholder="Digite sua Senha"
+          autoComplete="off"
         />
         <button
           disabled={ !(formValues.pass.length >= 6 && isEmailValid) }
